@@ -1,29 +1,45 @@
 # PoroBotHQ
 
-![Poro in blue space-marine armor, with an orange visor reflection and a cyan HUD.](../assets/poro-space-marine.png)
+![Poro in blue space-marine armor, with an orange visor reflection and a cyan HUD.](https://raw.githubusercontent.com/PoroBotHQ/.github/main/assets/poro-space-marine.png)
 
 We build StarCraft II bots and tools to understand their decisions. Our current project is **porotoss**, a playful nod to Poroburu and Protoss. We aim to become an **[AI Arena](https://aiarena.net/) Division 1 bot team**, with Protoss as the flagship and functional Terran and Zerg bots as additional milestones.
 
 Our stack uses **F# policies and .NET 10**. We compare modeled predictions with actual matches, keeping replays and traces to guide the next improvement.
 
-## Projects
+## Repository layout
 
-| Name | Purpose |
-| --- | --- |
-| [porotoss](https://github.com/PoroBotHQ/porotoss) | Project coordination, component selection and development guidance. |
-| [porotoss-bot](https://github.com/PoroBotHQ/porotoss-bot) | Proprietary bot policies, game integration, private experiment adapters and native replay capture. |
-| [porotoss-engine](https://github.com/PoroBotHQ/porotoss-engine) | Reusable factual SC2 contracts, optional native client and a basic starter. |
-| [porotoss-platform](https://github.com/PoroBotHQ/porotoss-platform) | Infrastructure, shared development tooling and the currently selected workload execution modules. |
-| [porotoss-workloads](https://github.com/PoroBotHQ/porotoss-workloads) | Standalone execution-framework preparation for running supported jobs and retaining their results. |
-| [porotoss-planner](https://github.com/PoroBotHQ/porotoss-planner) | Standalone production models, constructor, simulator and advice library/CLI preparation. |
-| [porotoss-train](https://github.com/PoroBotHQ/porotoss-train) | Shared experiment framework product; its first standalone preparation provides the typed contract library. |
-| [porotoss-replays](https://github.com/PoroBotHQ/porotoss-replays) | Standalone shared replay domain, offline readers and processing/data-contract preparation. |
+[porotoss](https://github.com/PoroBotHQ/porotoss) is the integrated development
+workspace. Its Git submodules group source by functional purpose and pin reviewed
+component versions. Typed project references preserve contracts between those
+components while allowing the runtime and trainer to compose the same libraries.
 
-These development repositories are currently private; their links require collaborator access. The reusable engine has a separate public-release path.
+| Functional purpose | Repository | Responsibility |
+| --- | --- | --- |
+| Concrete bot runtime | [porotoss-bot](https://github.com/PoroBotHQ/porotoss-bot) | Concrete policies, selected service factory, host, configuration, models and native integration. |
+| Bot engine core | [porotoss-engine](https://github.com/PoroBotHQ/porotoss-engine) | Neutral SC2 facts/actions, policy/session contracts, optional native client and starter. |
+| Proxmox platform | [porotoss-platform](https://github.com/PoroBotHQ/porotoss-platform) | Infrastructure, executor administration and currently selected workload execution modules. |
+| Trainer | [porotoss-train](https://github.com/PoroBotHQ/porotoss-train) | Experiment contracts, controller, training adapters and proof tools. |
+| Wargames | [porotoss-wargames](https://github.com/PoroBotHQ/porotoss-wargames) | Scenario rules/evaluators, native workers, normalization and scenario controls. |
+| Strategy libraries | [porotoss-strategy](https://github.com/PoroBotHQ/porotoss-strategy) | Separate typed planner, terrain, opponent-belief, force, mission, doctrine-contract and production-logistics libraries. |
+| Replay libraries | [porotoss-replays](https://github.com/PoroBotHQ/porotoss-replays) | Prepared replay domain, offline readers and processing/data contracts. |
+| Workload libraries | [porotoss-workloads](https://github.com/PoroBotHQ/porotoss-workloads) | Prepared portable execution/lifecycle framework for supported jobs and retained results. |
 
-The workloads, planner, train and replays repositories now have independent versions, builds and offline checks. Existing bot/platform consumers retain their original implementations while adoption proceeds. Generic experiment controller/core extraction remains pending, and native replay capture stays with the bot. Micro, macro and scripting are experiment extensions within the train product.
+These development repositories are currently private; links require collaborator
+access. The reusable engine has a separate public-release path.
 
-Shared typed models live in each producer's contract/model library: engine facts, workloads execution contracts, planner models, train experiment contracts and replay domain/data contracts. Collaborators can use the [product and term glossary](https://github.com/PoroBotHQ/porotoss/blob/main/docs/glossary.md) and [boundary map](https://github.com/PoroBotHQ/porotoss/blob/main/docs/repository-boundaries.md) to find the code names and current adoption state. The `porotoss-train` product name preserves existing `Porotoss.Experiments` code and serialized identities.
+The planner is developed within strategy as independent library, CLI and test
+projects. Its original [porotoss-planner](https://github.com/PoroBotHQ/porotoss-planner)
+repository retains the historical extraction and provenance. Replay and workload
+consumer adoption remain separately coordinated; currently selected execution
+modules remain platform-owned. Native replay capture stays with the runtime.
+
+Shared typed models stay with their semantic owner: engine facts, strategy/planner
+models, train experiment contracts, replay domain/data contracts and workload
+execution contracts. The `porotoss-train` product preserves existing
+`Porotoss.Experiments` code and wire identities. Collaborators can consult the
+[boundary map](https://github.com/PoroBotHQ/porotoss/blob/main/docs/repository-boundaries.md)
+and [glossary](https://github.com/PoroBotHQ/porotoss/blob/main/docs/glossary.md) for
+current ownership and adoption details.
 
 ## What we want to understand
 
