@@ -27,12 +27,6 @@ components while allowing the runtime and trainer to compose the same libraries.
 These development repositories are currently private; links require collaborator
 access. The reusable engine has a separate public-release path.
 
-The planner is developed within strategy as independent library, CLI and test
-projects. Its original [porotoss-planner](https://github.com/PoroBotHQ/porotoss-planner)
-repository retains the historical extraction and provenance. Replay and workload
-consumer adoption remain separately coordinated; currently selected execution
-modules remain platform-owned. Native replay capture stays with the runtime.
-
 Shared typed models stay with their semantic owner: engine facts, strategy/planner
 models, train experiment contracts, replay domain/data contracts and workload
 execution contracts. The `porotoss-train` product preserves existing
