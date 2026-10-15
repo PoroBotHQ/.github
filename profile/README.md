@@ -6,34 +6,25 @@ We build StarCraft II bots and tools to understand their decisions. Our current 
 
 Our stack uses **F# policies and .NET 10**. We compare modeled predictions with actual matches, keeping replays and traces to guide the next improvement.
 
-## Repository layout
+## Project structure
 
-[porotoss](https://github.com/PoroBotHQ/porotoss) is the integrated development
-workspace. Its Git submodules group source by functional purpose and pin reviewed
-component versions. Typed project references preserve contracts between those
-components while allowing the runtime and trainer to compose the same libraries.
+Our development repositories are private. This map describes the integrated
+`porotoss` workspace; source access is limited to collaborators. Git submodules
+group source by functional purpose and select compatible component versions.
 
 | Functional purpose | Repository | Responsibility |
 | --- | --- | --- |
-| Concrete bot runtime | [porotoss-bot](https://github.com/PoroBotHQ/porotoss-bot) | Concrete policies, selected service factory, host, configuration, models and native integration. |
-| Bot engine core | [porotoss-engine](https://github.com/PoroBotHQ/porotoss-engine) | Neutral SC2 facts/actions, policy/session contracts, optional native client and starter. |
-| Proxmox platform | [porotoss-platform](https://github.com/PoroBotHQ/porotoss-platform) | Infrastructure, executor administration and currently selected workload execution modules. |
-| Trainer | [porotoss-train](https://github.com/PoroBotHQ/porotoss-train) | Experiment contracts, controller, training adapters and proof tools. |
-| Wargames | [porotoss-wargames](https://github.com/PoroBotHQ/porotoss-wargames) | Scenario rules/evaluators, native workers, normalization and scenario controls. |
-| Strategy libraries | [porotoss-strategy](https://github.com/PoroBotHQ/porotoss-strategy) | Separate typed planner, terrain, opponent-belief, force, mission, doctrine-contract and production-logistics libraries. |
-| Replay libraries | [porotoss-replays](https://github.com/PoroBotHQ/porotoss-replays) | Prepared replay domain, offline readers and processing/data contracts. |
-| Workload libraries | [porotoss-workloads](https://github.com/PoroBotHQ/porotoss-workloads) | Prepared portable execution/lifecycle framework for supported jobs and retained results. |
+| Concrete bot runtime | `porotoss-bot` | Bot policies, service composition, host, configuration and native integration. |
+| Bot engine core | `porotoss-engine` | Shared SC2 facts/actions, policy/session contracts, client and starter. |
+| Proxmox platform | `porotoss-platform` | Infrastructure, executor administration and workload execution. |
+| Trainer | `porotoss-train` | Experiment contracts, controller and training adapters. |
+| Wargames | `porotoss-wargames` | Scenario rules, evaluators, workers and controls. |
+| Strategy libraries | `porotoss-strategy` | Separate typed planner, terrain, belief, force, mission, doctrine and production-logistics libraries. |
+| Replay libraries | `porotoss-replays` | Replay models, offline readers and processing/data contracts. |
+| Workload libraries | `porotoss-workloads` | Portable execution and lifecycle framework. |
 
-These development repositories are currently private; links require collaborator
-access. The reusable engine has a separate public-release path.
-
-Shared typed models stay with their semantic owner: engine facts, strategy/planner
-models, train experiment contracts, replay domain/data contracts and workload
-execution contracts. The `porotoss-train` product preserves existing
-`Porotoss.Experiments` code and wire identities. Collaborators can consult the
-[boundary map](https://github.com/PoroBotHQ/porotoss/blob/main/docs/repository-boundaries.md)
-and [glossary](https://github.com/PoroBotHQ/porotoss/blob/main/docs/glossary.md) for
-current ownership and adoption details.
+The runtime and trainer compose the same library projects through typed
+contracts. Each component owns its implementation and domain models.
 
 ## What we want to understand
 
