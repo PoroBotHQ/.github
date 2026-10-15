@@ -1,7 +1,5 @@
 # PoroBotHQ
 
-![Poro in blue space-marine armor, with an orange visor reflection and a cyan HUD.](https://raw.githubusercontent.com/PoroBotHQ/.github/main/assets/poro-space-marine.png)
-
 We build StarCraft II bots and tools to understand their decisions. Our current project is **porotoss**, a playful nod to Poroburu and Protoss. We aim to become an **[AI Arena](https://aiarena.net/) Division 1 bot team**, with Protoss as the flagship and functional Terran and Zerg bots as additional milestones.
 
 Our stack uses **F# policies and .NET 10**. We compare modeled predictions with actual matches, keeping replays and traces to guide the next improvement.
@@ -55,3 +53,7 @@ structure; public release links will be added as components become available.
 Changes are reviewed in pull requests and tied to issues. Offline checks establish
 their scoped behavior; actual matches supply gameplay evidence. A completed loss
 is useful when it shows us what to improve.
+
+![Poro in blue space-marine armor, with an orange visor reflection and a cyan HUD.](https://raw.githubusercontent.com/PoroBotHQ/.github/main/assets/poro-space-marine.webp)
+
+*“Hell, it's about time.”*
