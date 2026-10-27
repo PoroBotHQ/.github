@@ -1,8 +1,10 @@
 # PoroBotHQ
 
-We build StarCraft II bots and tools to understand their decisions. Our current project is **porotoss**, a playful nod to Poroburu and Protoss. We aim to become an **[AI Arena](https://aiarena.net/) Division 1 bot team**, with Protoss as the flagship and functional Terran and Zerg bots as additional milestones.
+We build StarCraft II bots and tools to understand their decisions. Our current project is **porotoss**, a playful nod to Poroburu and Protoss. We aim for **[AI Arena](https://aiarena.net/) Division 1** with Protoss, Terran, Zerg and Random, alongside race-bound cheese profiles. The first cheese profile to reach Division 1 meets that part of the goal; the remaining cheese entries are tracked separately and do not all gate the first release.
 
 Our stack uses **F# policies and .NET 10**. We compare modeled predictions with actual matches, keeping replays and traces to guide the next improvement.
+
+Poroburu coordinates the project, with a playful coordinator-cat and process-enjoyer persona 🐈. In conversation, Poro is welcome; on GitHub, **porointern** is the separate machine account used by coding agents. We enjoy making the next experiment easier to run and its results easier to understand.
 
 ## What we are building
 
@@ -18,11 +20,11 @@ logistics. We develop these as bounded models with explicit assumptions and
 uncertainty. Deterministic examples and seeded property checks help test the
 models; matches and replays show where their assumptions need improvement.
 
-**A reusable F# engine is being prepared for public release.** `porotoss-engine`
-provides neutral game facts and actions, policy/session contracts, a client and
-a starter. It is intended to let developers build their own policies while our
-competitive strategy remains independently developed. The source link will be
-added when the public release is available.
+**A reusable F# engine is being prepared for a future public release.**
+`porotoss-engine` provides neutral game facts and actions, policy/session
+contracts, a client and a starter. Its source is currently private. Public
+release remains future work, with disclosure, licensing and standalone-use
+criteria to meet before a public source link is available.
 
 ## Architecture
 
@@ -32,16 +34,18 @@ project references. Each functional boundary owns its implementation and models.
 | Component | Responsibility |
 | --- | --- |
 | `porotoss-bot` | Concrete policies, service composition, host, configuration and native integration. |
-| `porotoss-engine` | Shared SC2 facts/actions, policy/session contracts, client and starter. |
-| `porotoss-platform` | Proxmox infrastructure, executor administration and workload execution. |
-| `porotoss-train` | Experiment contracts, controller and training adapters. |
-| `porotoss-wargames` | Scenario rules, evaluators, workers and controls. |
+| `porotoss-engine` | Shared SC2 facts/actions, policy/session contracts, client and starter; currently private. |
+| `porotoss-platform` | Infrastructure, executor administration and currently selected workload execution. |
+| `porotoss-bot/trainer` | Current training source: experiment contracts, controller and training adapters. |
+| `porotoss-bot/wargames` | Current wargames source: scenario rules, evaluators, workers and controls. |
 | `porotoss-strategy` | Separate planner, terrain, belief, force, mission, doctrine and logistics libraries. |
-| `porotoss-replays` | Replay models, offline readers and processing/data contracts. |
-| `porotoss-workloads` | Portable execution and lifecycle framework. |
+| `porotoss-replays` | Standalone replay domain/processing preparation; current consumers remain bot-owned. |
+| `porotoss-workloads` | Standalone execution-framework preparation; current consumers remain platform-selected until coordinated cutover. |
 
-Development source is currently private. Repository names describe the project
-structure; public release links will be added as components become available.
+Training and wargames were imported into `porotoss-bot` on October 19, 2026,
+and cut over on October 20. Their former repositories retain archived history.
+Development source is currently private; these names describe source boundaries
+and preparation, without claiming public availability or consumer adoption.
 
 ## What we want to understand
 
