@@ -1,0 +1,46 @@
+name: Decision
+description: Prepare a standalone decision with numbered recommendations.
+labels: ["decision:draft"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Follow the [canonical process contract](https://github.com/PoroBotHQ/porotoss/blob/main/CONTRIBUTING.md#canonical-process-items).
+        This form prepares the decision. Its owning manager handles the owner request and records the answer under that contract.
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      description: The decision to make.
+    validations:
+      required: true
+  - type: input
+    id: tracked-by
+    attributes:
+      label: Tracked by
+      description: The owning role.
+    validations:
+      required: true
+  - type: textarea
+    id: response
+    attributes:
+      label: Response
+      description: What Poro does and where; once answered, use none needed and link the decision record.
+      value: |
+        Tell the Coordinator thread "approve all recommended", or list the exceptions by number. Commenting on this issue alone notifies no one.
+    validations:
+      required: true
+  - type: textarea
+    id: decisions
+    attributes:
+      label: Decisions
+      description: The executive question, numbered recommendations and what happens next.
+      value: |
+        ## Decision: <question>
+
+        1. <question> **Recommended: <answer>.**
+
+        What happens next:
+    validations:
+      required: true
