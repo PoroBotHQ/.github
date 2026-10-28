@@ -1,0 +1,40 @@
+name: Poro task
+description: An owning manager's actionable operation for Poro, with an exact command or UI location and readback.
+labels: ["needs-poro"]
+assignees: ["poroburu"]
+type: Task
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For the owning manager to open only when Poro can act now. Earlier dependencies use an ordinary Task under the canonical contract.
+        Follow the [canonical process contract](https://github.com/PoroBotHQ/porotoss/blob/main/CONTRIBUTING.md#canonical-process-items).
+        After creation, the owning manager must ADD the item to Project 1, read membership back, and post one Blocking comment. The form presets labels, native assignee and Type; it cannot certify board membership or the operation's result.
+        Never put credentials or secret values in the issue.
+  - type: input
+    id: topic
+    attributes:
+      label: Topic
+      description: The tag, reboot window, board toggle, credential operation or other specific owner task.
+    validations:
+      required: true
+  - type: input
+    id: tracked-by
+    attributes:
+      label: Tracked by
+      description: The owning role responsible for recording the readback.
+    validations:
+      required: true
+  - type: textarea
+    id: response
+    attributes:
+      label: Response
+      description: Give the exact command or UI location and the non-secret readback the agent will record.
+      value: |
+        Exact command or UI location:
+
+        Readback the agent will record:
+
+        Report completion to:
+    validations:
+      required: true
